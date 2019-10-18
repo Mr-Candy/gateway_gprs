@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gateway.dao.DeviceDao">
+	<resultMap id="BaseResultMap" type="com.gateway.entity.Device">
+		<id column="device_id" jdbcType="BIGINT" property="deviceID" />
+		<result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+		<result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+		<result column="mfr_id" jdbcType="BIGINT" property="mfrID" />
+		<result column="prot_name" jdbcType="VARCHAR" property="protName" />
+		<result column="register_date" jdbcType="TIMESTAMP" property="registerDate" />
+		<result column="sale_state" jdbcType="INTEGER" property="saleState" />
+		<result column="serv_state" jdbcType="INTEGER" property="servState" />
+		<result column="work_state" jdbcType="INTEGER" property="workState" />
+		<result column="user_id" jdbcType="BIGINT" property="userID" />
+		<result column="dept_id" jdbcType="BIGINT" property="deptID" />
+		<result column="plat_serv_id" jdbcType="INTEGER" property="platServID" />
+		<result column="apply_to" jdbcType="INTEGER" property="applyTo" />
+		<result column="object_id" jdbcType="BIGINT" property="objectID" />
+		<result column="activate_date" jdbcType="TIMESTAMP" property="activateDate" />
+		<result column="serv_expire_date" jdbcType="TIMESTAMP" property="servExpireDate" />
+		<result column="staff_name" jdbcType="VARCHAR" property="staffName" />
+		<result column="online_state" jdbcType="INTEGER" property="onlineState" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		device_id, device_name, device_type, mfr_id, prot_name, register_date,
+	    sale_state, serv_state, work_state, user_id, dept_id, plat_serv_id, apply_to, object_id,
+	    activate_date, serv_expire_date, staff_name, online_state
+  	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from device
+		where device_id = #{deviceID,jdbcType=BIGINT}
+	</select>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.gateway.entity.Device">
+		update device
+		<set>
+			<if test="deviceName != null">
+				device_name = #{deviceName,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceType != null">
+				device_type = #{deviceType,jdbcType=VARCHAR},
+			</if>
+			<if test="mfrID != null">
+				mfr_id = #{mfrID,jdbcType=BIGINT},
+			</if>
+			<if test="protName != null">
+				prot_name = #{protName,jdbcType=VARCHAR},
+			</if>
+			<if test="registerDate != null">
+				register_date = #{registerDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleState != null">
+				sale_state = #{saleState,jdbcType=INTEGER},
+			</if>
+			<if test="servState != null">
+				serv_state = #{servState,jdbcType=INTEGER},
+			</if>
+			<if test="workState != null">
+				work_state = #{workState,jdbcType=INTEGER},
+			</if>
+			<if test="userID != null">
+				user_id = #{userID,jdbcType=VARCHAR},
+			</if>
+			<if test="deptID != null">
+				dept_id = #{deptID,jdbcType=BIGINT},
+			</if>
+			<if test="platServID != null">
+				plat_serv_id = #{platServID,jdbcType=INTEGER},
+			</if>
+			<if test="applyTo != null">
+				apply_to = #{applyTo,jdbcType=INTEGER},
+			</if>
+			<if test="objectID != null">
+				object_id = #{objectID,jdbcType=BIGINT},
+			</if>
+			<if test="activateDate != null">
+				activate_date = #{activateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="servExpireDate != null">
+				serv_expire_date = #{servExpireDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="staffName != null">
+				staff_name = #{staffName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where device_id = #{deviceID,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gateway.entity.Device">
+	    update device
+	    set device_name = #{deviceName,jdbcType=VARCHAR},
+	      device_type = #{deviceType,jdbcType=VARCHAR},
+	      mfr_id = #{mfrID,jdbcType=BIGINT},
+	      prot_name = #{protName,jdbcType=VARCHAR},
+	      register_date = #{registerDate,jdbcType=TIMESTAMP},
+	      sale_state = #{saleState,jdbcType=INTEGER},
+	      serv_state = #{servState,jdbcType=INTEGER},
+	      work_state = #{workState,jdbcType=INTEGER},
+	      user_id = #{userID,jdbcType=VARCHAR},
+	      dept_id = #{deptID,jdbcType=BIGINT},
+	      plat_serv_id = #{platServID,jdbcType=INTEGER},
+	      apply_to = #{applyTo,jdbcType=INTEGER},
+	      object_id = #{objectID,jdbcType=BIGINT},
+	      activate_date = #{activateDate,jdbcType=TIMESTAMP},
+	      serv_expire_date = #{servExpireDate,jdbcType=TIMESTAMP},
+	      staff_name = #{staffName,jdbcType=VARCHAR}
+	    where device_id = #{deviceID,jdbcType=BIGINT}
+  	</update>
+
+</mapper>

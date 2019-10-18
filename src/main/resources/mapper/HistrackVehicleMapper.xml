@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gateway.dao.HistrackVehicleMapper" >
+  <resultMap id="BaseResultMap" type="com.gateway.entity.HistrackVehicle" >
+    <constructor >
+      <idArg column="uuid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="device_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="lng" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="lat" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="speed" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="direction" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="temperature" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="pressure" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="level" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="electric" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="upload_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uuid, device_id, lng, lat, speed, direction, temperature, pressure, level, electric, 
+    upload_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from histrack_vehicle_g
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from histrack_vehicle_g
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gateway.entity.HistrackVehicle" >
+    insert into histrack_vehicle_g (uuid, device_id, lng, 
+      lat, speed, direction, 
+      temperature, pressure, level, 
+      electric, upload_time)
+    values (#{uuid,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{lng,jdbcType=DECIMAL}, 
+      #{lat,jdbcType=DECIMAL}, #{speed,jdbcType=DECIMAL}, #{direction,jdbcType=DECIMAL}, 
+      #{temperature,jdbcType=DECIMAL}, #{pressure,jdbcType=DECIMAL}, #{level,jdbcType=DECIMAL}, 
+      #{electric,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gateway.entity.HistrackVehicle" >
+    insert into histrack_vehicle_g
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="speed != null" >
+        speed,
+      </if>
+      <if test="direction != null" >
+        direction,
+      </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="pressure != null" >
+        pressure,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="electric != null" >
+        electric,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="speed != null" >
+        #{speed,jdbcType=DECIMAL},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=DECIMAL},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=DECIMAL},
+      </if>
+      <if test="pressure != null" >
+        #{pressure,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=DECIMAL},
+      </if>
+      <if test="electric != null" >
+        #{electric,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gateway.entity.HistrackVehicle" >
+    update histrack_vehicle_g
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="speed != null" >
+        speed = #{speed,jdbcType=DECIMAL},
+      </if>
+      <if test="direction != null" >
+        direction = #{direction,jdbcType=DECIMAL},
+      </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=DECIMAL},
+      </if>
+      <if test="pressure != null" >
+        pressure = #{pressure,jdbcType=DECIMAL},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=DECIMAL},
+      </if>
+      <if test="electric != null" >
+        electric = #{electric,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gateway.entity.HistrackVehicle" >
+    update histrack_vehicle_g
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      lng = #{lng,jdbcType=DECIMAL},
+      lat = #{lat,jdbcType=DECIMAL},
+      speed = #{speed,jdbcType=DECIMAL},
+      direction = #{direction,jdbcType=DECIMAL},
+      temperature = #{temperature,jdbcType=DECIMAL},
+      pressure = #{pressure,jdbcType=DECIMAL},
+      level = #{level,jdbcType=DECIMAL},
+      electric = #{electric,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
